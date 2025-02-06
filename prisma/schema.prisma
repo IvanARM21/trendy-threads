@@ -1,0 +1,215 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime? @map("email_verified")
+  phone         String?
+  image         String?
+  role          Role      @default(USER)
+  accounts      Account[]
+  sessions      Session[]
+  password      String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  addresses UserAddress[]
+  orders    Order[]
+
+  @@index([email])
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+model UserAddress {
+  id         String @id @default(cuid())
+  userId     String
+  user       User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  address    String
+  apartment  String
+  zip        String
+  city       String
+  department String
+  country    String
+
+  instructions String
+  phone        String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Order     Order[]
+}
+
+model Account {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([provider, providerAccountId])
+}
+
+model Session {
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum Gender {
+  MEN
+  WOMEN
+}
+
+model Category {
+  id     String  @id @default(cuid())
+  name   String
+  slug   String
+  gender Gender
+  image  String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  products Product[]
+}
+
+enum ProductState {
+  DRAFT
+  ACTIVE
+  OUT_OF_STOCK
+  DISCONTINUED
+  DELETED
+  ARCHIVED
+}
+
+model Product {
+  id            String  @id @default(cuid())
+  name          String
+  slug          String
+  price         Float
+  description   String
+  isHighlighted Boolean @default(false)
+
+  gender Gender
+
+  categoryId   String
+  category     Category       @relation(fields: [categoryId], references: [id])
+  sizes        ProductSize[]
+  images       ProductImage[]
+  orderProduct OrderProduct[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  state ProductState @default(DRAFT)
+}
+
+model ProductImage {
+  id        String  @id @default(cuid())
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  url       String
+}
+
+model ProductSize {
+  id        String  @id @default(cuid())
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  sizeId    String
+  size      Size    @relation(fields: [sizeId], references: [id])
+  stock     Int
+}
+
+model Size {
+  id           String         @id @default(cuid())
+  label        String
+  ProductSize  ProductSize[]
+  OrderProduct OrderProduct[]
+}
+
+enum OrderStatus {
+  ERROR
+  PENDING
+  PAYED
+  REJECTED
+  CANCELLED
+}
+
+model Order {
+  id       String @id @default(cuid())
+  tax      Float
+  subtotal Float
+  shipping Float
+  total    Float
+  discount Float
+
+  status OrderStatus
+
+  addressId String
+  address   UserAddress @relation(fields: [addressId], references: [id])
+
+  userId        String
+  user          User           @relation(fields: [userId], references: [id])
+  orderProducts OrderProduct[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+}
+
+model OrderProduct {
+  id       String @id @default(cuid())
+  quantity Int
+  price    Float
+
+  sizeId    String
+  size      Size    @relation(fields: [sizeId], references: [id])
+  orderId   String
+  order     Order   @relation(fields: [orderId], references: [id])
+  productId String
+  Product   Product @relation(fields: [productId], references: [id])
+}
