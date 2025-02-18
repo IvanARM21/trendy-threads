@@ -59,7 +59,7 @@ export const useCheckout = (
         name: item.name,
         productId: item.id,
         quantity: item.quantity,
-        size: item.size,
+        size: item.size?.id ? item.size : null,
         price: item.price,
       }));
 

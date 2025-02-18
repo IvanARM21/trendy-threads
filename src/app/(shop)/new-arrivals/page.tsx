@@ -22,18 +22,6 @@ export default async function ProductsByGenderPage() {
     },
   });
 
-  const productsMany = await prisma.product.findMany({
-    select: {
-      id: true,
-      name: true,
-      sizes: {
-        select: {
-          stock: true,
-        },
-      },
-    },
-  });
-
   return (
     <section className="pt-14 pb-24">
       <div className="container">

@@ -78,6 +78,6 @@ export interface OrderProduct {
     name: string;
     productId: string;
     quantity: number;
-    size: ProductSize;
+    size: ProductSize | null;
     price: number;
 }

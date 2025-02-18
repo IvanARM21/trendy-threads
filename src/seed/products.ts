@@ -267,27 +267,27 @@ export const products = [
         ],
         sizes: [
             {
-                productId: "cm6mfj4oh000208l8b54414b8",
+                productId: "cm6mmsf9l000008l5hv1ofa0v",
                 sizeId: sizes[1].id,
                 stock: 6
             },
             {
-                productId: "cm6mfj4oh000208l8b54414b8",
+                productId: "cm6mmsf9l000008l5hv1ofa0v",
                 sizeId: sizes[2].id,
                 stock: 12
             },
             {
-                productId: "cm6mfj4oh000208l8b54414b8",
+                productId: "cm6mmsf9l000008l5hv1ofa0v",
                 sizeId: sizes[3].id,
                 stock: 15
             },
             {
-                productId: "cm6mfj4oh000208l8b54414b8",
+                productId: "cm6mmsf9l000008l5hv1ofa0v",
                 sizeId: sizes[4].id,
                 stock: 12
             },
             {
-                productId: "cm6mfj4oh000208l8b54414b8",
+                productId: "cm6mmsf9l000008l5hv1ofa0v",
                 sizeId: sizes[5].id,
                 stock: 8
             }

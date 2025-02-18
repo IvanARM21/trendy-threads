@@ -1,6 +1,5 @@
 import { ProductImageHover } from "@/components/products/ProductImageHover";
 import { prisma } from "@/lib/prisma";
-import { products } from "@/seed/products";
 import { formattCurrency } from "@/utils";
 
 export default async function ProductsByGenderPage() {

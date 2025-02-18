@@ -28,18 +28,19 @@ export const payOrder = async (orderId : string) => {
         }
 
         const productsList : ProductItem[]  = order.orderProducts.map(item => {
+           
             return {
                 id: item.productId,
                 name: item.product.name,
                 price: item.price,
                 quantity: item.quantity,
                 image: item.product.images[0].url,
-                size: {
-                    sizeId: item.size.id,
+                size: item.size ? {
+                    sizeId: item?.size.id ?? "",
                     size: item.size as Size,
-                    stock: 0, // Assuming stock is not available in the current context
-                    order: item.size.order
-                }
+                    stock: 0,
+                    order: item?.size.order ?? ""
+                } : null
             }
         });
 
