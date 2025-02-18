@@ -14,6 +14,11 @@ export const AddToCartForm = ({ product }: Props) => {
   const { quantity, sizeSelect, addProductCart } = useCartStore();
 
   const condition = +quantity < 0 || isNaN(+quantity) || !sizeSelect;
+
+  const sizesOrdered = product.sizes.sort(
+    (a, b) => (a.size?.order ?? 0) - (b.size?.order ?? 0)
+  );
+
   return (
     <form>
       <div className="flex flex-col gap-2 mt-6">
@@ -24,7 +29,7 @@ export const AddToCartForm = ({ product }: Props) => {
           Size
         </label>
         <div className="flex flex-wrap gap-2">
-          {product.sizes.map((size) => (
+          {sizesOrdered.map((size) => (
             <SizeSelect size={size} key={size.sizeId} />
           ))}
         </div>
@@ -48,7 +53,6 @@ export const AddToCartForm = ({ product }: Props) => {
         disabled={condition}
         type="button"
         onClick={() => {
-          console.log(sizeSelect);
           if (sizeSelect) {
             addProductCart({
               id: product.id ?? "",

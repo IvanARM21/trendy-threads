@@ -26,7 +26,7 @@ export async function GET(req: NextRequest) {
   if (collection_status === "failure") {
     await prisma.order.update({
       where: { id: external_reference },
-      data: { status: "REJECTED" },
+      data: { paymentStatus: "REJECTED" },
     });
     return redirect(`/?order_id=${external_reference}&status=failure`);
   }

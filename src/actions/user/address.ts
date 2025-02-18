@@ -25,8 +25,7 @@ export const getUserAddresses = async (userId : string) => {
         }
 
         const addresses = await prisma.userAddress.findMany({ where: { userId }});
-        console.log(addresses)
-        return await prisma.userAddress.findMany({ where: { userId } });
+        return addresses
     } catch (error) {
         if(error instanceof Error) {
             throw error;
@@ -41,7 +40,7 @@ export const getUserAddress = async (addressId : string) => {
             throw new Error('Address ID is required');
         }
 
-        return await prisma.userAddress.findFirst({ where: { id: addressId } });
+        return await prisma.userAddress.findUnique({ where: { id: addressId } });
     } catch (error) {
         if(error instanceof Error) {
             throw error;

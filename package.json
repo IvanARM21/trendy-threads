@@ -2,6 +2,7 @@
   "name": "backend-eccomerce",
   "version": "0.1.0",
   "private": true,
+  "type": "commonjs",
   "scripts": {
     "dev": "next dev",
     "build": "prisma generate && next build",
@@ -13,8 +14,9 @@
     "@auth/prisma-adapter": "^2.7.4",
     "@heroicons/react": "^2.2.0",
     "@mercadopago/sdk-react": "^0.0.23",
-    "@prisma/client": "^6.3.0",
+    "@prisma/client": "^6.3.1",
     "bcryptjs": "^2.4.3",
+    "cloudinary": "^2.5.1",
     "mercadopago": "^2.3.0",
     "motion": "^12.0.6",
     "next": "15.1.6",
@@ -22,23 +24,26 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.54.2",
+    "react-toastify": "^11.0.3",
+    "sharp": "^0.33.5",
     "swiper": "^11.2.2",
     "tailwind-merge": "^2.6.0",
+    "zod": "^3.24.2",
     "zustand": "^5.0.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@types/bcryptjs": "^2.4.6",
     "@types/mercadopago": "^1.5.11",
-    "@types/node": "^20",
+    "@types/node": "^20.17.17",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.1.6",
     "postcss": "^8",
-    "prisma": "^6.3.0",
+    "prisma": "^6.3.1",
     "tailwindcss": "^3.4.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5"
+    "typescript": "^5.7.3"
   }
 }

@@ -1,7 +1,7 @@
 import { twMerge } from "tailwind-merge";
 
 interface Props {
-  className: string;
+  className?: string;
   bounceColor?: string;
 }
 export const Spinner = ({ className, bounceColor }: Props) => {

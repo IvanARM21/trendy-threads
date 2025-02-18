@@ -11,8 +11,13 @@ import { QuantityInputCart } from "./QuantityInputCart";
 
 export const CartSidebar = () => {
   const [loaded, setLoaded] = useState(false);
-  const { cartProduct, getTotalPrice, isActive, closeCart, removeProductCart } =
-    useCartStore();
+  const {
+    cartProduct,
+    getSubtotalPrice,
+    isActive,
+    closeCart,
+    removeProductCart,
+  } = useCartStore();
 
   useEffect(() => {
     setLoaded(true);
@@ -49,7 +54,7 @@ export const CartSidebar = () => {
                   className="grid grid-cols-3 gap-4 border-b pb-8 mb-8 last-of-type:border-b-0 last-of-type:pb-0 last-of-type:mb-0"
                 >
                   <Image
-                    src={`/products/${product.image.url}`}
+                    src={product.image.url}
                     alt={`Imagen de ${product.name}`}
                     width={100}
                     height={100}
@@ -87,13 +92,12 @@ export const CartSidebar = () => {
                   Subtotal
                 </h2>
                 <p className="text-xl font-medium text-zinc-500">
-                  {formattCurrency(getTotalPrice())}
+                  {formattCurrency(getSubtotalPrice())}
                 </p>
               </div>
 
               <p className="text-zinc-500 mt-0.5 mb-6 text-lg">
-                Taxes and Shipping are calcultaded to checkout Impuestos y envío
-                calculados al finalizar su compra
+                Taxes and Shipping are calculated to checkout taxes and shipping
               </p>
 
               <div className="flex justify-between items-center gap-6">

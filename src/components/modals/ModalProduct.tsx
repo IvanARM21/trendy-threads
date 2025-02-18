@@ -64,7 +64,7 @@ export const ModalProduct = () => {
             </header>
             <div className="grid grid-cols-3 gap-4 items-center px-4 py-6">
               <Image
-                src={`/products/${currentProductAdded.image.url}`}
+                src={currentProductAdded.image.url}
                 alt={`Imagen de ${currentProductAdded.name}`}
                 width={200}
                 height={200}
@@ -91,13 +91,13 @@ export const ModalProduct = () => {
                   href="/cart"
                   className="py-2 px-4 text-indigo-700  bg-indigo-200/40 hover:bg-indigo-200/80 transition-colors rounded-lg text-lg font-medium flex items-center gap-2 justify-center"
                 >
-                  Ver carrito
+                  View cart
                 </Link>
                 <Link
                   href="/checkout"
                   className="py-2 px-4 text-white bg-indigo-600 hover:bg-indigo-700 transition-colors rounded-lg text-lg font-medium flex items-center gap-2 justify-center"
                 >
-                  Finalizar compra
+                  Checkout
                 </Link>
               </div>
             </footer>

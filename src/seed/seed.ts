@@ -1,9 +1,9 @@
+import * as bcryptjs from 'bcryptjs';
 import { prisma } from "../lib/prisma";
 import { userAddresses, users } from "./users";
 import { sizes } from "./sizes";
 import { products } from "./products";
 import { categories } from "./categories";
-import bcryptjs from 'bcryptjs';
 
 async function main() {
     // Delete orders

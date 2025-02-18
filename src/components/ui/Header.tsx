@@ -7,9 +7,9 @@ import {
   MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
 import { UserOptions } from "./UserOptions";
-import { ProfileModal } from "../modals/ProfileModal";
+import { ProfileModal } from "../modals/profile/ProfileModal";
 import { useSession } from "next-auth/react";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { twMerge } from "tailwind-merge";
 import { useEffect, useState } from "react";
 import { useCartStore } from "@/store/cart";
@@ -17,21 +17,32 @@ import { MobileMenu } from "./MobileMenu";
 import { Logo } from "./Logo";
 import { Bars3CenterLeftIcon } from "@heroicons/react/24/solid";
 import { motion } from "motion/react";
+import { PageState } from "@/interfaces/general.interface";
 
 export const Header = () => {
   const { data: session } = useSession();
   const { openCart, getTotalProducts } = useCartStore();
   const pathname = usePathname();
+  const params = useSearchParams();
 
   const [mobileMenu, setMobileMenu] = useState(false);
   const [profileModal, setProfileModal] = useState(false);
+  const [profilePage, setProfilePage] = useState<PageState>("profile");
   const [loaded, setLoaded] = useState(false);
-
-  console.log(session);
 
   useEffect(() => {
     setLoaded(true);
   }, [loaded]);
+
+  useEffect(() => {
+    const orderId = params.get("order_id");
+    if (orderId) {
+      setProfileModal(true);
+      setProfilePage("orders");
+      return;
+    }
+    setProfilePage("profile");
+  }, [params]);
 
   return (
     <>
@@ -140,7 +151,10 @@ export const Header = () => {
       />
 
       {profileModal && session && (
-        <ProfileModal onSettingClick={() => setProfileModal(!profileModal)} />
+        <ProfileModal
+          page={profilePage}
+          onSettingClick={() => setProfileModal(!profileModal)}
+        />
       )}
     </>
   );

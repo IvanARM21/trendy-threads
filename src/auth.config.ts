@@ -24,7 +24,6 @@ export default {
               return null;
             }
     
-            console.log("user from auth", user)
 
             return user;
           } catch (error) {

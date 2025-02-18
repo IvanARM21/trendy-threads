@@ -29,7 +29,7 @@ export const CartList = () => {
         >
           <Link href={`/products/${product.slug}`}>
             <Image
-              src={`/products/${product.image.url}`}
+              src={product.image.url}
               alt={product.name}
               width={200}
               height={200}

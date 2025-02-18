@@ -10,7 +10,7 @@ export const authenticateUser = async(auth : Authenticate) => {
     try {
         const { email, password } = auth;
 
-        const user = await prisma.user.findFirst({ where: { email } });
+        const user = await prisma.user.findUnique({ where: { email } });
        
         if(!user) {
             throw new Error('User not found');

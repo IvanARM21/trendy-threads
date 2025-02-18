@@ -1,4 +1,5 @@
 import { CartProduct, ProductSize } from "@/interfaces/product.interface";
+import { calculateDiscount } from "@/utils";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
@@ -19,10 +20,13 @@ interface CartStore {
     addProductCart: (cartProduct: CartProduct) => void;
     removeProductCart: (cartProduct: CartProduct) => void;
     editProductCart: (product: CartProduct) => void;
+
+    clearCart: () => void;
     
     getShippingPrice: () => number;
     getTaxPrice: () => number;
     getSubtotalPrice: () => number;
+    getDiscountPrice: () => number;
     getTotalPrice: () => number;
 
     openCart: () => void;
@@ -70,12 +74,14 @@ const useCartStore = create<CartStore>()(
                     }
                     return productState;
                 })
-                console.log(newCart);
                 return { cartProduct: newCart };
             }),
 
-            getShippingPrice: () => 12.99,
+            clearCart: () => set(() => ({ cartProduct: [] })),
+
+            getShippingPrice: () => 150,
             getSubtotalPrice: () => get().cartProduct.reduce((acc, product) => acc + product.price * product.quantity, 0),
+            getDiscountPrice: () => get().getSubtotalPrice()-calculateDiscount(get().getSubtotalPrice(),0.1),
             getTaxPrice: () => get().getSubtotalPrice() * 0.21,
             getTotalPrice: () => (get().getShippingPrice() + get().getSubtotalPrice() + get().getTaxPrice()),
 

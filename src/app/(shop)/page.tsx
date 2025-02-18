@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 
-const HeroHome = dynamic(() => import("@/sections/HeroHome"), { ssr: false });
+const HeroHome = dynamic(() => import("@/sections/HeroHome"), { ssr: true });
 const Incentives = dynamic(() => import("@/sections/Incentives"), {
   ssr: false,
 });

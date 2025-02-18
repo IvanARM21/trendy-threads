@@ -5,8 +5,10 @@ import { QuantityInputCart } from "@/components/cart/QuantityInputCart";
 import { useCartStore } from "@/store/cart";
 import { formattCurrency } from "@/utils";
 import { TrashIcon } from "@heroicons/react/24/solid";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { GENDER_FORMATTED } from "@/constants";
+import { useSession } from "next-auth/react";
+import { checkIfUserHasDiscount } from "@/actions/order/checkIfUserHasDiscount";
 
 export const OrderList = () => {
   const {
@@ -16,13 +18,28 @@ export const OrderList = () => {
     getShippingPrice,
     getTaxPrice,
     getTotalPrice,
+    getDiscountPrice,
   } = useCartStore();
 
   const [loaded, setLoaded] = useState(false);
+  const [hasDiscount, setHasDiscount] = useState(false);
+
+  const { data: session } = useSession();
 
   useEffect(() => {
     setLoaded(true);
   }, [loaded]);
+
+  const getIfUserHasDiscount = useCallback(async () => {
+    if (session?.user.id) {
+      const userHasDiscount = await checkIfUserHasDiscount();
+      setHasDiscount(userHasDiscount);
+    }
+  }, [session?.user.id]);
+
+  useEffect(() => {
+    getIfUserHasDiscount();
+  }, [getIfUserHasDiscount]);
 
   if (!loaded) return null;
 
@@ -37,7 +54,7 @@ export const OrderList = () => {
               className="grid grid-cols-3 gap-8 p-6 border-b"
             >
               <Image
-                src={`/products/${product.image.url}`}
+                src={product.image.url}
                 alt={product.name}
                 width={200}
                 height={200}
@@ -85,6 +102,18 @@ export const OrderList = () => {
               {formattCurrency(getSubtotalPrice())}
             </p>
           </div>
+          {hasDiscount ? (
+            <div className="flex justify-between border-b pb-4 mb-4">
+              <p className="text-lg text-zinc-500 font-medium">
+                Discount (10%)
+              </p>
+              <p className="text-lg text-zinc-500 font-medium">
+                -{formattCurrency(getDiscountPrice())}
+              </p>
+            </div>
+          ) : (
+            <></>
+          )}
           <div className="flex justify-between border-b pb-4 mb-4">
             <p className="text-lg text-zinc-500 font-medium">Shipping</p>
             <p className="text-lg text-zinc-500 font-medium">
@@ -100,7 +129,9 @@ export const OrderList = () => {
           <div className="flex justify-between pb-4">
             <p className="text-2xl font-semibold text-zinc-800">Total</p>
             <p className="text-2xl font-semibold text-zinc-800">
-              {formattCurrency(getTotalPrice())}
+              {formattCurrency(
+                getTotalPrice() - (hasDiscount ? getDiscountPrice() : 0)
+              )}
             </p>
           </div>
         </div>

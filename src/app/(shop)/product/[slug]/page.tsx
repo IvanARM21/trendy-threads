@@ -3,17 +3,15 @@ import { ProductImagesSlide } from "@/components/product/ProductImagesSlide";
 import { formattCurrency } from "@/utils";
 import { AddToCartForm } from "@/components/product/AddToCartForm";
 import { ModalProduct } from "@/components/modals/ModalProduct";
-import { getProductBySlug } from "@/actions/product/getProductBySlug";
+import { getProductBySlug } from "@/actions/product/getProduct";
 import { GENDER_FORMATTED } from "@/constants";
 
-interface Props {
-  params: Promise<{
-    slug: string;
-  }>;
-}
-
-export default async function ProductBySlugPage({ params }: Props) {
-  const slug = (await params).slug;
+export default async function ProductBySlugPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
 
   const product = await getProductBySlug(slug);
 

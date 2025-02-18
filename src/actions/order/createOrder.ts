@@ -3,7 +3,7 @@
 import { prisma } from "@/lib/prisma";
 import { OrderProduct } from "@/interfaces/order.interface";
 import { UserAddress } from "@/interfaces/user.interface";
-import { getShippingPrice, getTaxPrice, calculateDiscount } from "@/utils";
+import { getShippingPrice, getTaxPrice } from "@/utils";
 import { createPayment } from "@/lib/mercadopago";
 import { ProductSize } from "@/interfaces/product.interface";
 
@@ -38,10 +38,11 @@ export const createOrder = async (userId: string | undefined, orderItems : Order
             await reduceStock(products);
 
             // 3. Calculate total amout
-            const { tax, subtotal, shipping, total, discount } = await getAmounts(orderItems, userId);
+            const { tax, subtotal, shipping, total, discountPercentage } = await getAmounts(orderItems, userId);
+            
             // 4. Create order
             const orderCreated = await prisma.order.create({
-                data: { tax, subtotal, shipping, total, discount, addressId, status: "PENDING", userId: user.id }
+                data: { tax, subtotal, shipping, total, discount: discountPercentage, addressId, userId: user.id, paymentId: "" }
             });
 
             // 5. Create order products
@@ -54,7 +55,7 @@ export const createOrder = async (userId: string | undefined, orderItems : Order
             await prisma.orderProduct.createMany({ data: orderItemsFormatted });
 
             // 6. Payment order
-            const url = await createPayment(products, orderCreated.id);
+            const url = await createPayment(products, orderCreated.id, tax, shipping, discountPercentage);
             return url;
         });
         
@@ -93,36 +94,49 @@ const checkProductsExists = async (orderItems: OrderProduct[]) => {
     return productsList;
 }
 
-const getAmounts = async (orderItems : OrderProduct[], userId : string) => {
+const getAmounts = async (orderItems: OrderProduct[], userId: string) => {
     let subtotal = 0;
-    const orderedItems : OrderProduct[] = [];
-    for(const item of orderItems) {
+    const orderedItems: OrderProduct[] = [];
+
+    for (const item of orderItems) {
         // 1. Get product
         const product = await prisma.product.findFirst({
             where: { id: item.productId }
         });
-        if(!product) {
+
+        if (!product) {
             throw new Error(`Product not found ${item.name}`);
         }
-        subtotal+=calculateDiscount(product?.price, 0);
-        orderedItems.push({name: product.name, productId: product.id, quantity: item.quantity, size: item.size, price: product?.price })
+
+        // Calcular subtotal correctamente
+        subtotal += product.price * item.quantity;
+
+        orderedItems.push({
+            name: product.name,
+            productId: product.id,
+            quantity: item.quantity,
+            size: item.size,
+            price: product.price
+        });
     }
 
     let discountPercentage = 0;
 
-    // Check if the first buy
-    const orders = await prisma.order.findFirst({ where: { userId }});
-    if(!orders) {
-        discountPercentage = .1;
+    // Check if it's the first purchase
+    const hasPreviousOrders = await prisma.order.findFirst({ where: { userId } });
+    if (!hasPreviousOrders) {
+        discountPercentage = 0.1;
     }
 
     const tax = getTaxPrice(subtotal);
     const shipping = getShippingPrice();
-    const discount = calculateDiscount(subtotal, discountPercentage);
 
-    const total = discount + shipping + tax;
-    return { tax, subtotal, shipping, total, discount, orderedItems };
-}
+    // Total se calcula en el frontend con el descuento aplicado
+    const total = subtotal + shipping + tax;
+
+    return { tax, subtotal, shipping, total, discountPercentage, orderedItems };
+};
+
 
 const reduceStock = async (orderItems : ProductItem[]) => {
     for(const item of orderItems) {

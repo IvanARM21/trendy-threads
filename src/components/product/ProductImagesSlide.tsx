@@ -38,7 +38,7 @@ export const ProductImagesSlide = ({ images, name }: Props) => {
         {images.map((image) => (
           <SwiperSlide key={image.url}>
             <Image
-              src={`/products/${image.url}`}
+              src={image.url}
               alt={`Product image ${name}`}
               width={800}
               height={800}
@@ -62,7 +62,7 @@ export const ProductImagesSlide = ({ images, name }: Props) => {
         {images.map((image) => (
           <SwiperSlide key={image.url} className="relative shadow rounded-xl">
             <Image
-              src={`/products/${image.url}`}
+              src={image.url}
               alt={`Product image ${name}`}
               width={210}
               height={322}

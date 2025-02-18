@@ -26,7 +26,7 @@ export async function GET(req: NextRequest) {
   if(payment.status === "approved") {
     await prisma.order.update({
       where: { id: external_reference },
-      data: { status: "PAYED" },
+      data: { paymentStatus: "PAYED" },
     });
     redirect(`/?order_id=${external_reference}&status=payed`);
   }

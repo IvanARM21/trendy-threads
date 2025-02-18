@@ -11,15 +11,12 @@ interface Props {
 export const SizeSelect = ({ size }: Props) => {
   const { onSizeClick, sizeSelect } = useCartStore();
 
-  console.log(sizeSelect?.sizeId);
-  console.log(size.sizeId);
   return (
     <>
       <input type="radio" name="size" id={size.id} className="hidden" />
       <label
         onClick={() => {
           onSizeClick(size);
-          console.log("Size", size);
         }}
         htmlFor={size.id}
         className={twMerge(

@@ -20,7 +20,7 @@ enum Role {
 
 model User {
   id            String    @id @default(cuid())
-  name          String?
+  name          String
   email         String    @unique
   emailVerified DateTime? @map("email_verified")
   phone         String?
@@ -64,7 +64,7 @@ model UserAddress {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  Order     Order[]
+  order     Order[]
 }
 
 model Account {
@@ -151,7 +151,7 @@ model ProductImage {
   id        String  @id @default(cuid())
   productId String
   product   Product @relation(fields: [productId], references: [id])
-  url       String
+  url       String  @unique
 }
 
 model ProductSize {
@@ -166,27 +166,49 @@ model ProductSize {
 model Size {
   id           String         @id @default(cuid())
   label        String
-  ProductSize  ProductSize[]
-  OrderProduct OrderProduct[]
+  order        Int
+  productSize  ProductSize[]
+  orderProduct OrderProduct[]
 }
 
-enum OrderStatus {
+enum OrderPaymentStatus {
   ERROR
   PENDING
   PAYED
   REJECTED
   CANCELLED
+  IN_PROCESS
+  AWAITING_PAYMENT
+  REFUNDED
+  CHARGED_BACK
+  UNKNOWN
+}
+
+enum FulfillmentStatus {
+  RECEIVED // Recibido negocio
+  CONFIRMED // Confirmado pago
+  PROCESSING // En preparación
+  TO_SHIP // Listo envío
+  SHIPPED // En camino
+  DELIVERED // Entregado cliente
+  READY_FOR_PICKUP // Listo retiro
+  PICKED_UP // Retirado cliente
+  FAILED_DELIVERY // Falló entrega
+  RETURNED // Devuelto cliente
 }
 
 model Order {
-  id       String @id @default(cuid())
-  tax      Float
-  subtotal Float
-  shipping Float
-  total    Float
-  discount Float
+  id String @id @default(cuid())
 
-  status OrderStatus
+  paymentId String
+  tax       Float
+  subtotal  Float
+  shipping  Float
+  total     Float
+  discount  Float
+
+  paymentStatus     OrderPaymentStatus @default(AWAITING_PAYMENT)
+  fulfillmentStatus FulfillmentStatus  @default(RECEIVED)
 
   addressId String
   address   UserAddress @relation(fields: [addressId], references: [id])
@@ -211,5 +233,5 @@ model OrderProduct {
   orderId   String
   order     Order   @relation(fields: [orderId], references: [id])
   productId String
-  Product   Product @relation(fields: [productId], references: [id])
+  product   Product @relation(fields: [productId], references: [id])
 }

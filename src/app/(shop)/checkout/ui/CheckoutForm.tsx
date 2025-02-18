@@ -7,25 +7,26 @@ import { Spinner } from "@/components/ui/Spinner";
 import { CheckCircleIcon } from "@heroicons/react/24/solid";
 import { motion } from "motion/react";
 import { useCheckout } from "../hooks/useCheckout";
+import { UserAddress } from "@prisma/client";
 
 interface Props {
   session: Session | null;
+  userAddresses: UserAddress[];
 }
 
-export const CheckoutForm = ({ session }: Props) => {
+export const CheckoutForm = ({ session, userAddresses }: Props) => {
   const {
     handleSubmit,
     onSubmit,
     newAddress,
     setNewAddress,
-    userAddresses,
     alert,
     isLoading,
     register,
     errors,
     setAddressSelected,
     addressSelected,
-  } = useCheckout(session);
+  } = useCheckout(session, userAddresses);
 
   return (
     <div className="order-2 lg:order-1">
