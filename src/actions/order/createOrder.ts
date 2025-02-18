@@ -13,7 +13,7 @@ export interface ProductItem {
     price: number;
     quantity: number;
     image: string;
-    size: ProductSize;
+    size: ProductSize | null;
 }
 
 export const createOrder = async (userId: string | undefined, orderItems : OrderProduct[], addressId : UserAddress["id"]) => {
@@ -49,7 +49,7 @@ export const createOrder = async (userId: string | undefined, orderItems : Order
             const orderItemsFormatted = products.map(({ id, size, quantity, price }) => ({ 
                 orderId: orderCreated.id,
                 productId: id,
-                sizeId: size.size?.id ?? "",
+                sizeId: size?.size?.id ?? null,
                 quantity: quantity, price 
             }));
             await prisma.orderProduct.createMany({ data: orderItemsFormatted });
@@ -141,6 +141,9 @@ const getAmounts = async (orderItems: OrderProduct[], userId: string) => {
 const reduceStock = async (orderItems : ProductItem[]) => {
     for(const item of orderItems) {
         // 1. Check if we have enough stock
+        if(!item.size?.id) {
+            continue
+        }
         const productSize = await prisma.productSize.findFirst({
             where: { id: item.size.id }
         });

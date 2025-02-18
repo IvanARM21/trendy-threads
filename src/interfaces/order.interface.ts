@@ -40,9 +40,9 @@ export interface GetOrderForEdit {
             name: string;
             images: { url: string }[]
         }
-        size: {
+        size?: {
             label: string;
-        }
+        } | null
     }[]
     addressId: string;
     address: UserAddress;
@@ -58,9 +58,9 @@ export type ProfileOrder = Order & {
             id: string;
             name: string;
         }
-        size: {
+        size?: {
             label: string;
-        }
+        } | null;
         price: number;
         quantity: number;
     }[]

@@ -24,7 +24,7 @@ export const CartList = () => {
     <ul className="flex flex-col gap-8">
       {cartProduct.map((product) => (
         <li
-          key={`${product.id}-${product.size.id}`}
+          key={`${product.id}-${product.size?.id}`}
           className="grid grid-cols-3 gap-8 border-b first-of-type:border-t first-of-type:pt-8 pb-8"
         >
           <Link href={`/products/${product.slug}`}>
@@ -34,7 +34,7 @@ export const CartList = () => {
               width={200}
               height={200}
               priority
-              className="w-full rounded-md hover:scale-105 transition-transform duration-300 aspect-[5/6] object-cover"
+              className="w-full rounded-md hover:scale-105 transition-transform duration-300 aspect-square object-cover"
             />
           </Link>
 
@@ -49,9 +49,13 @@ export const CartList = () => {
                 <p className="text-lg text-zinc-500 font-medium">
                   Gender: {GENDER_FORMATTED[product.gender].label}
                 </p>
-                <p className="text-lg text-zinc-500 font-medium">
-                  Size: {product.size?.size?.label}
-                </p>
+                {product.size?.id ? (
+                  <p className="text-lg text-zinc-500 font-medium">
+                    Size: {product.size?.size?.label}
+                  </p>
+                ) : (
+                  <></>
+                )}
               </div>
 
               <button

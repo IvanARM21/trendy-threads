@@ -50,7 +50,7 @@ export const CartSidebar = () => {
             <div className="flex flex-col px-4 py-6 sm:px-6 flex-1">
               {cartProduct.map((product) => (
                 <div
-                  key={`${product.id}-${product.size.id}`}
+                  key={`${product.id}-${product.size?.id}`}
                   className="grid grid-cols-3 gap-4 border-b pb-8 mb-8 last-of-type:border-b-0 last-of-type:pb-0 last-of-type:mb-0"
                 >
                   <Image
@@ -58,12 +58,13 @@ export const CartSidebar = () => {
                     alt={`Imagen de ${product.name}`}
                     width={100}
                     height={100}
-                    className="rounded-xl w-full aspect-[5/6] object-cover"
+                    className="rounded-xl w-full aspect-square object-cover"
                   />
                   <div className="col-span-2 flex flex-col justify-between">
                     <div className="flex justify-between gap-1">
                       <h3 className="text-xl font-medium text-zinc-800">
-                        {product.name} - {product.size?.size?.label}
+                        {product.name}{" "}
+                        {product.size ? `- ${product.size?.size?.label}` : ""}
                       </h3>
 
                       <button

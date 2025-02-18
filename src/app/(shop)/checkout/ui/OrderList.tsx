@@ -50,7 +50,7 @@ export const OrderList = () => {
         <ul className="flex flex-col gap-8">
           {cartProduct.map((product) => (
             <li
-              key={`${product.id}-${product.size.id}`}
+              key={`${product.id}-${product.size?.id}`}
               className="grid grid-cols-3 gap-8 p-6 border-b"
             >
               <Image
@@ -58,7 +58,7 @@ export const OrderList = () => {
                 alt={product.name}
                 width={200}
                 height={200}
-                className="w-full rounded-md aspect-[5/6] object-cover"
+                className="w-full rounded-md aspect-square object-cover"
               />
 
               <div className="col-span-2 flex flex-col justify-between">
@@ -70,9 +70,13 @@ export const OrderList = () => {
                     <p className="text-lg text-zinc-500 font-medium">
                       Gender: {GENDER_FORMATTED[product.gender].label}
                     </p>
-                    <p className="text-lg text-zinc-500 font-medium">
-                      Size: {product.size?.size?.label}
-                    </p>
+                    {product.size?.id ? (
+                      <p className="text-lg text-zinc-500 font-medium">
+                        Size: {product.size?.size?.label}
+                      </p>
+                    ) : (
+                      <></>
+                    )}
                   </div>
 
                   <button

@@ -1,17 +1,18 @@
 import { ProductImageHover } from "@/components/products/ProductImageHover";
 import { prisma } from "@/lib/prisma";
-import { products } from "@/seed/products";
 import { formattCurrency } from "@/utils";
 
 export default async function ProductsByGenderPage() {
   const products = await prisma.product.findMany({
     where: {
-      gender: { in: ["WOMEN", "UNISEX"] },
       state: "ACTIVE",
       sizes: {
         some: {
           stock: { gt: 0 },
         },
+      },
+      createdAt: {
+        gte: new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000),
       },
     },
     include: {
@@ -21,7 +22,17 @@ export default async function ProductsByGenderPage() {
     },
   });
 
-  console.log(products);
+  const productsMany = await prisma.product.findMany({
+    select: {
+      id: true,
+      name: true,
+      sizes: {
+        select: {
+          stock: true,
+        },
+      },
+    },
+  });
 
   return (
     <section className="pt-14 pb-24">
@@ -29,7 +40,7 @@ export default async function ProductsByGenderPage() {
         <div className="flex flex-col justify-between items-center w-full bg-gray-50">
           <div className="w-full">
             <h1 className="text-3xl text-left mb-10 md:text-4xl font-bold  text-zinc-800">
-              Female Style
+              New Arrivals
             </h1>
           </div>
 

@@ -6,7 +6,11 @@ import { useState } from "react";
 import { Alert } from "../ui/Alert";
 import { AlertMessage } from "@/interfaces/general.interface";
 
-export const QuantityInput = () => {
+interface Props {
+  condition: boolean;
+}
+
+export const QuantityInput = ({ condition }: Props) => {
   const {
     handleQuantity,
     quantity,
@@ -26,7 +30,7 @@ export const QuantityInput = () => {
         <button
           type="button"
           onClick={() => {
-            if (!sizeSelect) {
+            if (!condition) {
               setAlert({
                 error: true,
                 message:

@@ -63,6 +63,10 @@ export const GENDER_FORMATTED = {
     MEN: {
         label: "Men",
         slug: "/men"
+    },
+    UNISEX: {
+        label: "Unisex",
+        slug: "/unisex"
     }
 }
 

@@ -101,6 +101,7 @@ model Session {
 enum Gender {
   MEN
   WOMEN
+  UNISEX
 }
 
 model Category {
@@ -228,8 +229,8 @@ model OrderProduct {
   quantity Int
   price    Float
 
-  sizeId    String
-  size      Size    @relation(fields: [sizeId], references: [id])
+  sizeId    String?
+  size      Size?   @relation(fields: [sizeId], references: [id], onDelete: SetNull)
   orderId   String
   order     Order   @relation(fields: [orderId], references: [id])
   productId String

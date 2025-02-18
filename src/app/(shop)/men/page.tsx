@@ -1,9 +1,24 @@
 import { ProductImageHover } from "@/components/products/ProductImageHover";
-import { products } from "@/seed/products";
+import { prisma } from "@/lib/prisma";
 import { formattCurrency } from "@/utils";
 
 export default async function ProductsByGenderPage() {
-  const productsForMen = products.filter((p) => p.gender === "MEN");
+  const products = await prisma.product.findMany({
+    where: {
+      gender: { in: ["MEN", "UNISEX"] },
+      state: "ACTIVE",
+      sizes: {
+        some: {
+          stock: { gt: 0 },
+        },
+      },
+    },
+    include: {
+      images: {
+        take: 2,
+      },
+    },
+  });
 
   return (
     <section className="pt-14 pb-24">
@@ -16,7 +31,7 @@ export default async function ProductsByGenderPage() {
           </div>
 
           <ul className="w-full grid grid-cols-2 lg:grid-cols-3 gap-5">
-            {productsForMen.map((product) => (
+            {products.map((product) => (
               <li key={product.id}>
                 <a href={`/product/${product.slug}`}>
                   <ProductImageHover images={product.images} />

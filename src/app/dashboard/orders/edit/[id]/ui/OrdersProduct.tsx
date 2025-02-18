@@ -20,7 +20,7 @@ export const OrdersProduct = ({ order }: Props) => {
       <div className="flex flex-col flex-1">
         {order.orderProducts.map((item) => (
           <div
-            key={`${item.product.id}-${item.size.label}`}
+            key={`${item.product.id}-${item.size?.label ?? ""}`}
             className="grid grid-cols-3 gap-4 border-b pb-8 mb-8 last-of-type:border-b-0 last-of-type:pb-0 last-of-type:mb-0"
           >
             <Image
@@ -39,9 +39,13 @@ export const OrdersProduct = ({ order }: Props) => {
                   <p className="font-medium text-zinc-500">
                     Qty: {item.quantity}
                   </p>
-                  <p className="font-medium text-zinc-500">
-                    Size: {item.size.label}
-                  </p>
+                  {item.size?.label ? (
+                    <p className="font-medium text-zinc-500">
+                      Size: {item.size.label}
+                    </p>
+                  ) : (
+                    <></>
+                  )}
                 </div>
 
                 <button type="button" aria-label="Eliminar producto">

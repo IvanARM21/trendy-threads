@@ -13,7 +13,7 @@ export const ProductImageHover = ({ images }: Props) => {
   return (
     <Image
       src={isHovered ? images[1].url : images[0].url}
-      className=" aspect-[5/6] w-full object-cover rounded-xl animate-fade-in"
+      className=" aspect-square w-full object-cover rounded-xl animate-fade-in"
       alt=""
       width={400}
       height={400}

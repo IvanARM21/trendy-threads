@@ -3,6 +3,7 @@ import { prisma } from "../lib/prisma";
 import { userAddresses, users } from "./users";
 import { sizes } from "./sizes";
 import { products } from "./products";
+import { accessories } from "./accesories";
 import { categories } from "./categories";
 
 async function main() {
@@ -48,6 +49,26 @@ async function main() {
     // Product Sizes
     const productSizes = products.flatMap(p => p.sizes);
     await prisma.productSize.createMany({ data: productSizes });
+
+    await Promise.all(
+        accessories.map(async ({ images, ...productData }) => {
+          const newProduct = await prisma.product.create({
+            data: productData,
+          });
+      
+          // Asociar imágenes con el ID generado
+          const productImages = images.map(({ url }) => ({
+            productId: newProduct.id,
+            url,
+          }));
+      
+          await prisma.productImage.createMany({ data: productImages });
+      
+          return newProduct;
+        })
+      );
+      
+    
 
     console.log("Executed seed successfully");
 }

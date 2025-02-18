@@ -69,12 +69,14 @@ export const ModalProduct = () => {
                 width={200}
                 height={200}
                 quality={80}
-                className="rounded-xl w-full aspect-[5/6] object-cover"
+                className="rounded-xl w-full aspect-square object-cover"
               />
               <div className="col-span-2">
                 <h3 className="text-xl font-medium text-zinc-800">
-                  {currentProductAdded.name} -{" "}
-                  {currentProductAdded.size?.size?.label}
+                  {currentProductAdded.name}{" "}
+                  {currentProductAdded.size?.id
+                    ? `- ${currentProductAdded.size.size.label}`
+                    : ""}
                 </h3>
                 <p className="text-lg text-zinc-600">
                   Cantidad: {currentProductAdded.quantity}

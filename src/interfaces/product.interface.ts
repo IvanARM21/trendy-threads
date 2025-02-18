@@ -1,7 +1,7 @@
 import { Category } from "./category.interface";
 
 export type ProductState = "DRAFT" | "ACTIVE" | "OUT_OF_STOCK" | "DISCONTINUED" | "DELETED" | "ARCHIVED"
-export type Gender = "MEN" | "WOMEN";
+export type Gender = "MEN" | "WOMEN" | "UNISEX";
 
 export interface Product {
     id?: string;
@@ -107,6 +107,6 @@ export interface CartProduct {
     price: number;
     gender: Gender;
     image: ProductImage;
-    size: ProductSize;
+    size: ProductSize | null;
     quantity: number;
 }

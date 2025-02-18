@@ -50,12 +50,12 @@ const useCartStore = create<CartStore>()(
             onClickQuantityMinus: () => set((state) => ({ quantity: `${+(state.quantity) - 1}` })),
             onSizeClick: (sizeSelect) => set(() => ({ sizeSelect, quantity: "1" })),
             addProductCart: (cartProduct) => set((state) => {
-                const product = state.cartProduct.find((product) => product.id === cartProduct.id && product.size.id === cartProduct.size.id);
+                const product = state.cartProduct.find((product) => product.id === cartProduct.id && product.size?.id === cartProduct.size?.id);
                 if(!product) {
                     return { cartProduct: [...state.cartProduct, cartProduct], modalProductAdded: true, currentProductAdded: cartProduct };
                 }
                 const cartUpdated = state.cartProduct.map(product => {
-                    if (product.id === cartProduct.id && product.size.id === cartProduct.size.id) {
+                    if (product.id === cartProduct.id && product.size?.id === cartProduct.size?.id) {
                         product.quantity += cartProduct.quantity;
                     }
                     return product;

@@ -43,4 +43,11 @@ export const categories: Category[] = [
         slug: "jeans",
         gender: "WOMEN",
     },
+    {
+        id: "cl5z9z2jq0008q0q0q0q0q0q0",
+        name: "Accessories",
+        image: null,
+        slug: "accessories",
+        gender: "UNISEX",
+    }
 ];

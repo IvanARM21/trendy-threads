@@ -267,33 +267,30 @@ export const products = [
         ],
         sizes: [
             {
-                sizeId: "cjyx1k7z80010gqz7z2f5i7y2", // S
-                stock: 6,
-                productId: "cm6mmsf9l000008l5hv1ofa0v"
+                productId: "cm6mfj4oh000208l8b54414b8",
+                sizeId: sizes[1].id,
+                stock: 6
             },
             {
-                sizeId: "cjyx1k7z80011gqz7z2f5i7y3", // M
-                stock: 12,
-                productId: "cm6mmsf9l000008l5hv1ofa0v"
-
+                productId: "cm6mfj4oh000208l8b54414b8",
+                sizeId: sizes[2].id,
+                stock: 12
             },
             {
-                sizeId: "cjyx1k7z80012gqz7z2f5i7y4", // L
-                stock: 15,
-                productId: "cm6mmsf9l000008l5hv1ofa0v"
-
+                productId: "cm6mfj4oh000208l8b54414b8",
+                sizeId: sizes[3].id,
+                stock: 15
             },
             {
-                sizeId: "cjyx1k7z80012gqz7z2f5i7y4", // XL
-                stock: 12,
-                productId: "cm6mmsf9l000008l5hv1ofa0v"
-
+                productId: "cm6mfj4oh000208l8b54414b8",
+                sizeId: sizes[4].id,
+                stock: 12
             },
             {
-                sizeId: "cjyx1k7z80012gqz7z2f5i7y4", // XXL
-                stock: 8,
-                productId: "cm6mmsf9l000008l5hv1ofa0v"
-            },
+                productId: "cm6mfj4oh000208l8b54414b8",
+                sizeId: sizes[5].id,
+                stock: 8
+            }
         ],
     },
 

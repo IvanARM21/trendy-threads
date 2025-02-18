@@ -258,7 +258,7 @@ export const OrdersPage = ({
                           <Image
                             src={orderProduct.product.images[0].url}
                             alt={`${orderProduct.product.name}`}
-                            className="col-span-2 w-40 aspect-square object-cover rounded-md "
+                            className="col-span-2 w-40 aspect-square object-cover rounded-md shadow"
                             width={160}
                             height={160}
                           />
@@ -278,12 +278,16 @@ export const OrdersPage = ({
                                   {orderProduct.quantity}
                                 </span>
                               </p>
-                              <p className="text-zinc-500 font-medium text-sm">
-                                Size:{" "}
-                                <span className="text-zinc-900">
-                                  {orderProduct.size.label}
-                                </span>
-                              </p>
+                              {orderProduct.size?.label ? (
+                                <p className="text-zinc-500 font-medium text-sm">
+                                  Size:{" "}
+                                  <span className="text-zinc-900">
+                                    {orderProduct.size.label}
+                                  </span>
+                                </p>
+                              ) : (
+                                <></>
+                              )}
                             </div>
                           </div>
                         </li>

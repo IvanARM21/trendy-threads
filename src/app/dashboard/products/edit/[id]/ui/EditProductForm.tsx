@@ -176,6 +176,7 @@ export const EditProductForm = ({ product, categories, sizes }: Props) => {
           >
             <option value="MEN">Men</option>
             <option value="WOMEN">Women</option>
+            <option value="UNISEX">Unisex</option>
           </select>
           {errors.gender?.message && <Alert message={errors.gender.message} />}
         </div>

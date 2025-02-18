@@ -22,23 +22,21 @@ export const createPayment = async (
     const paymentItems = [
         // Agregar productos
         ...items.map(({ id, price, quantity, name, size }) => ({
-            id: id, // ✅ Se mantiene el ID del producto
-            title: `${name} - ${size.size?.label}`,
+            id: id,
+            title: `${name} ${size?.size.label ? `- ${size.size?.label}` : ""}`,
             unit_price: price,
             quantity: quantity,
             currency_id: "UYU",
         })),
-        // Agregar costo de envío (con ID único)
         {
-            id: "shipping", // ✅ Se asigna un ID único
+            id: "shipping",
             title: "Shipping",
             unit_price: shipping,
             quantity: 1,
             currency_id: "UYU",
         },
-        // Agregar impuestos (con ID único)
         {
-            id: "taxes", // ✅ Se asigna un ID único
+            id: "taxes",
             title: "Taxes",
             unit_price: tax,
             quantity: 1,
