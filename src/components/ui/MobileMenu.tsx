@@ -25,10 +25,10 @@ export const MobileMenu = ({
     <div
       className={twMerge(
         "fixed h-[100dvh] w-full z-50 bg-white transition-all duration-500  lg:hidden",
-        mobileMenu ? "-translate-y-0" : "-translate-y-[120%]"
+        mobileMenu ? "-translate-y-0" : "-translate-y-[100%]"
       )}
     >
-      <div className="max-w-lg mx-auto px-4 h-screen flex flex-col gap-16 justify-between py-6">
+      <div className="max-w-lg mx-auto px-4 h-full flex flex-col gap-16 justify-between py-6">
         <div className=" flex justify-between items-center">
           <Logo className="text-2xl" />
           <button
