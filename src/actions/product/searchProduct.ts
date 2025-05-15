@@ -11,19 +11,17 @@ export const getProductByQuery = async (query : string) => {
             },
             state: "ACTIVE"
         },
-        include: {
-            images: {
-                take:1,
-                select: {
-                    url: true
-                }
-            },
-            sizes: {
-                select: {
-                    size: true
+            select: {
+                id: true,
+                name: true,
+                price: true,
+                images: {
+                    take: 1,
+                    select: {
+                        url: true
+                    }
                 }
             }
-        },
         });
 
         return products;

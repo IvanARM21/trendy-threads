@@ -21,9 +21,9 @@ export const QuantityInputCart = ({ product }: Props) => {
             if (!value || value < 1) return;
             editProductCart({ ...product, quantity: value });
           }}
-          className="bg-zinc-200 hover:bg-zinc-300 transition-colors rounded-full size-6 flex justify-center items-center"
+          className="bg-zinc-200 hover:bg-zinc-300 transition-colors rounded-full size-5 flex justify-center items-center"
         >
-          <MinusIcon className="size-5 text-zinc-500" />
+          <MinusIcon className="size-4 text-zinc-500" />
         </button>
         <input
           type="text"
@@ -42,9 +42,9 @@ export const QuantityInputCart = ({ product }: Props) => {
             if (!value) return;
             editProductCart({ ...product, quantity: value });
           }}
-          className="bg-zinc-200 hover:bg-zinc-300 transition-colors rounded-full size-6 flex justify-center items-center"
+          className="bg-zinc-200 hover:bg-zinc-300 transition-colors rounded-full size-5 flex justify-center items-center"
         >
-          <PlusIcon className="size-5 text-zinc-500" />
+          <PlusIcon className="size-4 text-zinc-500" />
         </button>
       </div>
     </>

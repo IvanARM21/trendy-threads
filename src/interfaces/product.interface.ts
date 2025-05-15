@@ -28,16 +28,6 @@ export interface ProductByQuery {
     id?: string;
     name: string;
     price: number;
-    slug: string;
-
-    description: string;
-    isHighlighted?: boolean;
-    gender: Gender;
-
-    createdAt?: Date;
-    updatedAt?: Date;
-
-    state: ProductState;
     images: {
         url: string;
     }[]

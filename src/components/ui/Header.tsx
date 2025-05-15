@@ -46,7 +46,7 @@ export const Header = () => {
 
   return (
     <>
-      <header className=" sticky top-0 z-30 min-h-20 bg-white flex items-center shadow-md">
+      <header className=" sticky top-0 z-30 min-h-20 bg-white flex items-center shadow-sm">
         <div className="flex justify-between items-center w-full container">
           <motion.nav
             initial={{ opacity: 0, y: -10 }}
@@ -112,7 +112,7 @@ export const Header = () => {
               </span>
               <ShoppingBagIcon className="size-6 text-zinc-600" />
             </button>
-            <motion.div className="gap-4 hidden lg:flex">
+            <motion.div className="gap-2 hidden lg:flex">
               {session ? (
                 <UserOptions
                   onSettingClick={() => setProfileModal(!profileModal)}
@@ -121,13 +121,13 @@ export const Header = () => {
                 <>
                   <Link
                     href={"/auth/sign-in"}
-                    className="bg-indigo-100 px-4 py-2 rounded-lg text-indigo-600 font-medium hover:bg-indigo-200 transition-colors duration-300 cursor-pointer"
+                    className="bg-indigo-100 px-6 py-3 text-sm rounded-xl text-indigo-600 font-medium hover:bg-indigo-200 transition-colors duration-300 cursor-pointer"
                   >
                     Sign In
                   </Link>
                   <Link
                     href={"/auth/sign-up"}
-                    className="bg-indigo-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-indigo-700 transition-colors duration-300 cursor-pointer"
+                    className="bg-indigo-600 text-white px-6 py-3 text-sm  rounded-xl font-medium hover:bg-indigo-700 transition-colors duration-300 cursor-pointer"
                   >
                     Sign Up
                   </Link>
@@ -148,6 +148,7 @@ export const Header = () => {
       <MobileMenu
         mobileMenu={mobileMenu}
         onCloseClick={() => setMobileMenu(false)}
+        onProfileClick={() => setProfileModal(!profileModal)}
       />
 
       {profileModal && session && (
