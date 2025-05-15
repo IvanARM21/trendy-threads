@@ -82,7 +82,7 @@ export const ProfileModal = ({ onSettingClick, page = "profile" }: Props) => {
         transition={{
           duration: 0.3,
         }}
-        className="px-4 flex justify-center items-center z-40 top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 max-w-6xl w-full fixed"
+        className="px-4 flex justify-center items-center z-30 top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 max-w-6xl w-full fixed"
       >
         <div className="flex max-w-6xl bg-white shadow w-full rounded-xl overflow-hidden h-[60vh]">
           {/* Sidebar */}

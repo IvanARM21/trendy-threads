@@ -73,7 +73,7 @@ export const OrdersPage = ({
   };
 
   return (
-    <div className="py-8 px-6 w-full flex flex-col relative">
+    <div className="py-8 px-6 w-full flex flex-col relative z-30">
       <div className="flex justify-between items-center border-b pb-4">
         <h2 className="text-2xl font-bold text-zinc-700">Order List</h2>
         <button type="button" onClick={toggleSidebar} className=" md:hidden">
