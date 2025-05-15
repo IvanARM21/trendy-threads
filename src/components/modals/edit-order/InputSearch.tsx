@@ -1,26 +1,14 @@
+import React, { useCallback, useEffect } from "react";
 import { getProductByQuery } from "@/actions/product/searchProduct";
-import { ProductByQuery } from "@/interfaces/product.interface";
 import { useDashboardStore } from "@/store/dashboard";
-import {
-  MagnifyingGlassCircleIcon,
-  MagnifyingGlassIcon,
-} from "@heroicons/react/24/outline";
-import { u } from "motion/react-client";
-import React, { useEffect, useState } from "react";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
 export const InputSearch = () => {
   const { searchProductModal, updateSearchProductModal } = useDashboardStore();
 
   const { query } = searchProductModal;
 
-  useEffect(() => {
-    const delayDebounce = setTimeout(fetchNewProducts, 500);
-
-    // Clear timeout
-    return () => clearTimeout(delayDebounce);
-  }, [query]);
-
-  const fetchNewProducts = async () => {
+  const fetchNewProducts = useCallback(async () => {
     if (!query.length) return;
 
     updateSearchProductModal({
@@ -38,7 +26,14 @@ export const InputSearch = () => {
     } catch (error) {
       console.log(error);
     }
-  };
+  }, [query, searchProductModal, updateSearchProductModal]);
+
+  useEffect(() => {
+    const delayDebounce = setTimeout(fetchNewProducts, 500);
+
+    // Clear timeout
+    return () => clearTimeout(delayDebounce);
+  }, [query, fetchNewProducts]);
 
   return (
     <form className="border border-transparent border-b-gray-100 p-4">

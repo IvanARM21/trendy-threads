@@ -1,5 +1,4 @@
 import { useDashboardStore } from "@/store/dashboard";
-import { formattCurrency } from "@/utils";
 import { ProductsList } from "./ProductsList";
 import { useMemo } from "react";
 import { getLocalStorage } from "@/utils/search-modal";
@@ -7,7 +6,7 @@ import { ProductDetail } from "./ProductDetail";
 
 export const SearchStateHandler = () => {
   const { searchProductModal } = useDashboardStore();
-  const { query, products, loading, productDetail } = searchProductModal;
+  const { query, products } = searchProductModal;
 
   const isSearched = useMemo(
     () => (query && products.length ? true : false),

@@ -48,7 +48,7 @@ export const OrdersPage = ({
       }
       setIsLoading(false);
     },
-    [isLoaded]
+    [isLoaded, setOrders]
   ); // Dependencias mínimas necesarias
 
   useEffect(() => {

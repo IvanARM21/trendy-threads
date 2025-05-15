@@ -1,9 +1,9 @@
-import { getProductById } from "@/actions/product/getProduct";
 import { getProductDetails } from "@/actions/product/searchProduct";
 import { useDashboardStore } from "@/store/dashboard";
 import { formattCurrency } from "@/utils";
 import { isSearchProducts } from "@/utils/search-modal";
 import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
+import Image from "next/image";
 import { useEffect, useMemo } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -14,7 +14,7 @@ export const ProductDetail = () => {
 
   const products = useMemo(
     () => isSearchProducts(searchProductModal.products, query),
-    [searchProductModal.products, searchProductModal.state]
+    [searchProductModal.products, searchProductModal.products, query]
   );
 
   useEffect(() => {
@@ -26,15 +26,17 @@ export const ProductDetail = () => {
       });
     };
     loadProductDetail();
-  }, []);
+  }, [products, searchProductModal, updateSearchProductModal]);
 
   return (
     <div className="flex flex-col">
       <div className="border-b  border-gray-100">
         <div className="p-5">
           <div className="flex gap-4 items-start">
-            <img
-              src={productDetail?.images[0].url}
+            <Image
+              src={productDetail?.images[0].url ?? ""}
+              width={100}
+              height={100}
               className="size-24 object-cover rounded-xl mb-2"
               alt=""
             />
@@ -86,19 +88,19 @@ export const ProductDetail = () => {
             <div className="flex gap-2 items-center">
               <button
                 type="button"
-                onClick={() => {}}
+                // onClick={() => {}}
                 className="bg-zinc-200 hover:bg-zinc-300 transition-colors rounded-full size-6 flex justify-center items-center"
               >
                 <MinusIcon className="size-5 text-zinc-500" />
               </button>
               <input
                 type="text"
-                onInput={(e) => {}}
+                // onInput={(e) => {}}
                 className="bg-transparent text-zinc-500 text-xl w-8 text-center border rounded-md outline-none"
               />
               <button
                 type="button"
-                onClick={() => {}}
+                // onClick={() => {}}
                 className="bg-zinc-200 hover:bg-zinc-300 transition-colors rounded-full size-6 flex justify-center items-center"
               >
                 <PlusIcon className="size-5 text-zinc-500" />

@@ -10,7 +10,7 @@ export const ProductsList = () => {
 
   const products = useMemo(
     () => isSearchProducts(searchProductModal.products, query),
-    [searchProductModal.products, searchProductModal.state]
+    [searchProductModal.products, query]
   );
 
   return (

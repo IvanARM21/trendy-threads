@@ -4,6 +4,7 @@ import { useDashboardStore } from "@/store/dashboard";
 import { formattCurrency } from "@/utils";
 import { getLocalStorage, setLocalStorage } from "@/utils/search-modal";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
+import Image from "next/image";
 import React from "react";
 
 interface Props {
@@ -59,7 +60,7 @@ export const ProductCard = ({ product }: Props) => {
       onClick={handleClick}
     >
       <div className="flex gap-2">
-        <img
+        <Image
           src={product.images[0].url}
           alt={product.name}
           width={100}

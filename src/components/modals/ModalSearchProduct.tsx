@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 export const ModalSearchProduct = () => {
   const { searchProductModal, closeSearchProduct } = useDashboardStore();
 
-  const { state, query, products } = searchProductModal;
+  const { state } = searchProductModal;
 
   const [loaded, setLoaded] = useState(false);
 
