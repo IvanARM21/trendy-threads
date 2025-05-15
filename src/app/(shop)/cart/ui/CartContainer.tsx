@@ -20,10 +20,8 @@ export const CartContainer = () => {
 
   return (
     <div className="container">
-      <h1 className="text-3xl md:text-4xl font-bold  text-zinc-800">
-        Carrito de compras
-      </h1>
-      <div className="grid grid-cols-2 gap-20 mt-10">
+      <h1 className="text-2xl font-bold  text-zinc-800">Shopping Cart</h1>
+      <div className="grid lg:grid-cols-12 gap-20 mt-10">
         <CartList />
         <SummaryOrder />
       </div>

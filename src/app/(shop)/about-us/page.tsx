@@ -17,7 +17,7 @@ export default function AboutUsPage() {
       <section className="py-16">
         <div className="container">
           <div className="grid md:grid-cols-2 gap-6">
-            <div className="p-6 rounded-xl shadow-md">
+            <div className="p-6 rounded-xl bg-gray-50 shadow">
               <h2 className="text-zinc-700 font-semibold text-3xl mb-3">
                 Mission
               </h2>
@@ -31,7 +31,7 @@ export default function AboutUsPage() {
                 tempore culpa sit.
               </p>
             </div>
-            <div className="p-6 rounded-xl shadow-md">
+            <div className="p-6 rounded-xl bg-gray-50 shadow">
               <h2 className="text-zinc-700 font-semibold text-3xl mb-3">
                 Vission
               </h2>
@@ -55,7 +55,7 @@ export default function AboutUsPage() {
             Our values
           </h2>
           <div className="grid grid-cols-3 gap-6 mt-6">
-            <div className="flex flex-col gap-2 shadow rounded-xl p-6">
+            <div className="flex flex-col gap-2 shadow rounded-xl p-6 bg-gray-50 ">
               <h3 className="text-xl">Lorem, ipsum.</h3>
               <p className="text-zinc-500 font-medium">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum
@@ -63,7 +63,7 @@ export default function AboutUsPage() {
                 praesentium in cupiditate?
               </p>
             </div>
-            <div className="flex flex-col gap-2 shadow rounded-xl p-6">
+            <div className="flex flex-col gap-2 shadow rounded-xl p-6 bg-gray-50 ">
               <h3 className="text-xl">Lorem, ipsum.</h3>
               <p className="text-zinc-500 font-medium">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum
@@ -71,7 +71,7 @@ export default function AboutUsPage() {
                 praesentium in cupiditate?
               </p>
             </div>
-            <div className="flex flex-col gap-2 shadow rounded-xl p-6">
+            <div className="flex flex-col gap-2 shadow rounded-xl p-6 bg-gray-50 ">
               <h3 className="text-xl">Lorem, ipsum.</h3>
               <p className="text-zinc-500 font-medium">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum
@@ -79,7 +79,7 @@ export default function AboutUsPage() {
                 praesentium in cupiditate?
               </p>
             </div>
-            <div className="flex flex-col gap-2 shadow rounded-xl p-6">
+            <div className="flex flex-col gap-2 shadow rounded-xl p-6 bg-gray-50 ">
               <h3 className="text-xl">Lorem, ipsum.</h3>
               <p className="text-zinc-500 font-medium">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum
@@ -87,7 +87,7 @@ export default function AboutUsPage() {
                 praesentium in cupiditate?
               </p>
             </div>
-            <div className="flex flex-col gap-2 shadow rounded-xl p-6">
+            <div className="flex flex-col gap-2 shadow rounded-xl p-6 bg-gray-50 ">
               <h3 className="text-xl">Lorem, ipsum.</h3>
               <p className="text-zinc-500 font-medium">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum
@@ -95,7 +95,7 @@ export default function AboutUsPage() {
                 praesentium in cupiditate?
               </p>
             </div>
-            <div className="flex flex-col gap-2 shadow rounded-xl p-6">
+            <div className="flex flex-col gap-2 shadow rounded-xl p-6 bg-gray-50 ">
               <h3 className="text-xl">Lorem, ipsum.</h3>
               <p className="text-zinc-500 font-medium">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum

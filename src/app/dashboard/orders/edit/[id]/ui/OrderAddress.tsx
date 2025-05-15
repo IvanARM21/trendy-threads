@@ -44,9 +44,8 @@ export const OrderAddress = ({ userAddresses, order }: Props) => {
                   setAddressSelected(address);
                 }}
                 className={twMerge(
-                  " border p-6 rounded-md flex justify-between gap-4 items-center cursor-pointer border-dashed",
-                  addressSelected?.id === address.id &&
-                    "border-indigo-600 border-2"
+                  " p-6 rounded-xl flex justify-between gap-4 border-2 items-center cursor-pointer border-dashed relative",
+                  addressSelected?.id === address.id && "border-indigo-600"
                 )}
               >
                 <div>
@@ -58,7 +57,7 @@ export const OrderAddress = ({ userAddresses, order }: Props) => {
                   </p>
                 </div>
                 {addressSelected?.id === address.id && (
-                  <div className="h-6 w-6">
+                  <div className="h-6 w-6 absolute right-2 top-2">
                     <CheckCircleIcon className="h-6 w-6 text-indigo-600" />
                   </div>
                 )}
