@@ -25,7 +25,7 @@ export const ProfileSidebar = ({
   return (
     <div
       className={twMerge(
-        "min-w-52 py-8 bg-zinc-100 shadow absolute invisible md:visible md:opacity-100 opacity-0 md:relative -translate-x-full md:translate-x-0 h-[60vh] rounded-l-xl transition-all duration-300",
+        "min-w-52 py-8 bg-zinc-100 shadow z-30 absolute invisible md:visible md:opacity-100 opacity-0 md:relative -translate-x-full md:translate-x-0 h-[60vh] rounded-l-xl transition-all duration-300",
         showSidebar && "translate-x-0 opacity-100 visible"
       )}
     >
