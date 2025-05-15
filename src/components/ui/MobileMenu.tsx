@@ -24,7 +24,7 @@ export const MobileMenu = ({
   return (
     <div
       className={twMerge(
-        "fixed inset-0 z-50 bg-white transition-all duration-500  lg:hidden",
+        "fixed h-[100dvh] w-full z-50 bg-white transition-all duration-500  lg:hidden",
         mobileMenu ? "-translate-y-0" : "-translate-y-[120%]"
       )}
     >
