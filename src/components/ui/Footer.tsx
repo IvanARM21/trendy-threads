@@ -80,10 +80,11 @@ export const Footer = () => {
         <div className="mt-10 pt-10 border-t border-zinc-700">
           <div className="flex flex-col-reverse md:flex-row gap-8 items-center justify-between">
             <div className="text-zinc-400 text-sm lg:text-lg font-medium text-balance text-center">
-              © 2024 TrendyThreads Inc. All rights reserved.
+              © {new Date().getFullYear()} TrendyThreads Inc. All rights
+              reserved.
             </div>
             <p className="text-zinc-400 font-medium text-sm lg:text-lg">
-              Desarrollado por{" "}
+              Developed by{" "}
               <a
                 href="https://ivexus-studio.vercel.app/"
                 target="_blank"

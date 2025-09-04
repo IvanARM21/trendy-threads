@@ -139,6 +139,7 @@ model Product {
   categoryId   String
   category     Category       @relation(fields: [categoryId], references: [id])
   sizes        ProductSize[]
+  // stock        Int?
   images       ProductImage[]
   orderProduct OrderProduct[]
 

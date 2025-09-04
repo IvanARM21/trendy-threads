@@ -4,7 +4,7 @@
 
 2. You must complete the enviroment variables in **.env**.
 
-3. You must have docker installed and running and execute **docker-comose up -d**.
+3. You must have docker installed and running and execute **docker-compose up -d**.
 
 4. You can execute **npm run seed** and have data in your database.
 

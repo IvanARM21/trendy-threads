@@ -137,7 +137,10 @@ export const SignUpForm = () => {
           <Alert error={true} message={errors.password2.message ?? ""} />
         )}
       </div>
-      <Link className="text-zinc-500 font-medium text-center" href="/sign-up">
+      <Link
+        className="text-zinc-500 font-medium text-center"
+        href="/auth/sign-in"
+      >
         You have an account? Sign in here
       </Link>
 

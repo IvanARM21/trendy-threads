@@ -2,9 +2,12 @@ import {
   UserCircleIcon,
   ShieldCheckIcon,
   ShoppingBagIcon,
+  Squares2X2Icon,
 } from "@heroicons/react/24/solid";
 import { twMerge } from "tailwind-merge";
 import { PageState } from "@/interfaces/general.interface";
+import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 interface Props {
   changePage: (newPage: PageState) => void;
@@ -17,11 +20,13 @@ export const ProfileSidebar = ({
   showSidebar,
   renderPage,
 }: Props) => {
+  const { data } = useSession();
+
   return (
     <div
       className={twMerge(
         "min-w-52 py-8 bg-zinc-100 shadow absolute invisible md:visible md:opacity-100 opacity-0 md:relative -translate-x-full md:translate-x-0 h-[60vh] rounded-l-xl transition-all duration-300",
-        showSidebar && "translate-x-0 opacity-100 visible"
+        showSidebar && "translate-x-0 opacity-100 z-[100] visible"
       )}
     >
       <div className="px-6 mb-6 hidden md:block">
@@ -39,6 +44,17 @@ export const ProfileSidebar = ({
           <UserCircleIcon className="size-5" />
           Profile
         </button>
+        {data?.user.role === "ADMIN" && (
+          <Link
+            href="/dashboard"
+            className={
+              "flex gap-3 font-medium text-zinc-600 py-3 px-4 items-center rounded-md hover:bg-zinc-200 lg:hidden"
+            }
+          >
+            <Squares2X2Icon className="size-5" />
+            Dashboard
+          </Link>
+        )}
         <button
           type="button"
           onClick={() => changePage("security")}

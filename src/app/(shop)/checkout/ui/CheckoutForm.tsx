@@ -4,7 +4,7 @@ import { Session } from "next-auth";
 import { Alert } from "@/components/ui/Alert";
 import { twMerge } from "tailwind-merge";
 import { Spinner } from "@/components/ui/Spinner";
-import { CheckCircleIcon } from "@heroicons/react/24/solid";
+import { CheckCircleIcon } from "@heroicons/react/24/outline";
 import { motion } from "motion/react";
 import { useCheckout } from "../hooks/useCheckout";
 import { UserAddress } from "@prisma/client";
@@ -37,7 +37,7 @@ export const CheckoutForm = ({ session, userAddresses }: Props) => {
       {userAddresses.length ? (
         <div className="space-y-4 mb-4">
           <h4 className="text-xl font-semibold text-zinc-700">Your addreses</h4>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid sm:grid-cols-2 gap-4">
             {userAddresses.map((address) => (
               <div
                 key={address.id}
@@ -50,9 +50,8 @@ export const CheckoutForm = ({ session, userAddresses }: Props) => {
                   setAddressSelected(address);
                 }}
                 className={twMerge(
-                  " border bg-white p-6 rounded-md flex justify-between gap-4 items-center cursor-pointer",
-                  addressSelected?.id === address.id &&
-                    "border-indigo-600 border-2"
+                  " border-2 border-dashed bg-white p-6 rounded-md flex justify-between gap-4 items-center cursor-pointer relative",
+                  addressSelected?.id === address.id && "border-indigo-600"
                 )}
               >
                 <div>
@@ -65,7 +64,7 @@ export const CheckoutForm = ({ session, userAddresses }: Props) => {
                 </div>
                 {addressSelected?.id === address.id && (
                   <div className="h-6 w-6">
-                    <CheckCircleIcon className="h-6 w-6 text-indigo-600" />
+                    <CheckCircleIcon className="h-6 w-6 text-indigo-600 absolute right-2 top-2" />
                   </div>
                 )}
               </div>

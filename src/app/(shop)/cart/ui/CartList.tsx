@@ -21,11 +21,11 @@ export const CartList = () => {
   if (!loaded) return null;
 
   return (
-    <ul className="flex flex-col gap-8">
+    <div className="flex flex-col gap-8 lg:col-span-7">
       {cartProduct.map((product) => (
         <li
           key={`${product.id}-${product.size?.id}`}
-          className="grid grid-cols-3 gap-8 border-b first-of-type:border-t first-of-type:pt-8 pb-8"
+          className="grid grid-cols-3 gap-8 border-b first-of-type:border-t first-of-type:pt-10 pb-10"
         >
           <Link href={`/products/${product.slug}`}>
             <Image
@@ -34,7 +34,7 @@ export const CartList = () => {
               width={200}
               height={200}
               priority
-              className="w-full rounded-md hover:scale-105 transition-transform duration-300 aspect-square object-cover"
+              className="w-full rounded-xl shadow-sm transition-transform duration-300 aspect-square object-cover"
             />
           </Link>
 
@@ -42,15 +42,15 @@ export const CartList = () => {
             <div className="flex justify-between gap-1 items-start">
               <div className="flex flex-col gap-1">
                 <Link href={`/products/${product.slug}`}>
-                  <h3 className="text-2xl font-bold text-zinc-700 hover:text-indigo-600 transition-colors duration-300">
+                  <h3 className="text-xl font-semibold text-zinc-700 hover:text-indigo-600 transition-colors duration-300">
                     {product.name}
                   </h3>
                 </Link>
-                <p className="text-lg text-zinc-500 font-medium">
+                <p className=" text-zinc-500 font-medium">
                   Gender: {GENDER_FORMATTED[product.gender].label}
                 </p>
                 {product.size?.id ? (
-                  <p className="text-lg text-zinc-500 font-medium">
+                  <p className=" text-zinc-500 font-medium">
                     Size: {product.size?.size?.label}
                   </p>
                 ) : (
@@ -63,7 +63,7 @@ export const CartList = () => {
                 aria-label="Eliminar producto"
                 onClick={() => removeProductCart(product)}
               >
-                <TrashIcon className="size-6 text-zinc-400 hover:text-red-600" />
+                <TrashIcon className="size-5 text-zinc-400 hover:text-red-600" />
               </button>
             </div>
             <div className="flex justify-between items-center">
@@ -76,6 +76,6 @@ export const CartList = () => {
           </div>
         </li>
       ))}
-    </ul>
+    </div>
   );
 };

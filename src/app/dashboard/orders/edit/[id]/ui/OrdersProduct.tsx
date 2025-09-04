@@ -1,7 +1,7 @@
 import { GetOrderForEdit } from "@/interfaces/order.interface";
 import { useDashboardStore } from "@/store/dashboard";
 import { calculateDiscount, formattCurrency } from "@/utils";
-import { TrashIcon } from "@heroicons/react/24/outline";
+import { ShoppingBagIcon, TrashIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
 
@@ -77,10 +77,11 @@ export const OrdersProduct = ({ order }: Props) => {
       <button
         type="button"
         onClick={openSearchProduct}
-        className="w-full h-40 border-2 border-zinc-400 group hover:border-indigo-600 rounded-lg border-dashed mt-4 flex justify-center items-center transition-all duration-300"
+        className="flex flex-col justify-center items-center gap-2  w-full h-40 border-2 border-zinc-300 group hover:border-indigo-600 rounded-lg border-dashed mt-4 transition-all duration-300"
       >
-        <span className="text-xl text-zinc-600 font-semibold group-hover:text-indigo-600 group-hover:scale-110 transition-all duration-300">
-          Add Products
+        <ShoppingBagIcon className="size-10 text-zinc-500" />
+        <span className=" text-zinc-800 font-semibold transition-all duration-300">
+          Add more products
         </span>
       </button>
     </div>

@@ -20,9 +20,7 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={`${urbanist.className} bg-gray-50 antialiased`}>
-        {children}
-      </body>
+      <body className={`${urbanist.className}  antialiased`}>{children}</body>
     </html>
   );
 }

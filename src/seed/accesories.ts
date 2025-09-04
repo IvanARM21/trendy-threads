@@ -11,6 +11,7 @@ export const accessories = [
       description: "",
       gender: "UNISEX" as Gender,
       isHighlighted: false,
+      // stock: 5,
       state: "ACTIVE" as ProductState,
       images: [
         { productId: "cm6mflok6000808l8ghdw8gqw", url: "/products/chain_1.webp" },
@@ -26,6 +27,7 @@ export const accessories = [
       description: "",
       gender: "UNISEX" as Gender,
       isHighlighted: true,
+      // stock: 5,
       state: "ACTIVE" as ProductState,
       images: [
         { productId: "cm6mflok6000808l8ghdw8gwqe", url: "/products/chain_two_1.webp" },
@@ -41,6 +43,7 @@ export const accessories = [
       description: "",
       gender: "UNISEX" as Gender,
       isHighlighted: false,
+      // stock: 5,
       state: "ACTIVE" as ProductState,
       images: [
         { productId: "cm6mflok6000808l8ghdw8gdas", url: "/products/bracelet_1.webp" },

@@ -67,11 +67,13 @@ export const QuantityInput = ({ condition }: Props) => {
         <button
           type="button"
           onClick={() => {
+            if (condition + quantity) {
+              onClickQuantityPlus();
+            }
             if (!sizeSelect) {
               setAlert({
                 error: true,
-                message:
-                  "Debes seleccionar una talla para modificar la cantidad",
+                message: "You should select a size to modify the quantity",
               });
               return;
             }

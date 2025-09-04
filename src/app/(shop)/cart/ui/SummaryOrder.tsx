@@ -46,36 +46,36 @@ export const SummaryOrder = () => {
   return (
     <div
       className={twMerge(
-        "bg-white p-8 rounded-xl shadow h-[460px] sticky top-10",
+        "bg-gray-50 p-10 rounded-xl shadow h-[460px] sticky top-10 lg:col-span-5",
         !hasDiscount && "h-[420px]"
       )}
     >
-      <h2 className="text-2xl font-semibold text-zinc-800">Order Summary</h2>
+      <h2 className="text-xl font-semibold text-zinc-800">Order Summary</h2>
 
       <div className="mt-6">
         <div className="flex justify-between border-b pb-4 mb-4">
-          <p className="text-lg text-zinc-500 font-medium">Subtotal</p>
-          <p className="text-lg text-zinc-500 font-medium">
+          <p className=" text-zinc-500 font-medium">Subtotal</p>
+          <p className=" text-zinc-500 font-medium">
             {formattCurrency(getSubtotalPrice())}
           </p>
         </div>
         {hasDiscount && (
           <div className="flex justify-between border-b pb-4 mb-4">
-            <p className="text-lg text-zinc-500 font-medium">Discount (10%)</p>
-            <p className="text-lg text-zinc-500 font-medium">
+            <p className=" text-zinc-500 font-medium">Discount (10%)</p>
+            <p className=" text-zinc-500 font-medium">
               -{formattCurrency(getDiscountPrice())}
             </p>
           </div>
         )}
         <div className="flex justify-between border-b pb-4 mb-4">
-          <p className="text-lg text-zinc-500 font-medium">Shipping</p>
-          <p className="text-lg text-zinc-500 font-medium">
+          <p className=" text-zinc-500 font-medium">Shipping</p>
+          <p className=" text-zinc-500 font-medium">
             {formattCurrency(getShippingPrice())}
           </p>
         </div>
         <div className="flex justify-between border-b pb-4 mb-4">
-          <p className="text-lg text-zinc-500 font-medium">Taxes</p>
-          <p className="text-lg text-zinc-500 font-medium">
+          <p className=" text-zinc-500 font-medium">Taxes</p>
+          <p className=" text-zinc-500 font-medium">
             {formattCurrency(getTaxPrice())}
           </p>
         </div>

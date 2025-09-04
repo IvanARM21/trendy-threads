@@ -23,7 +23,7 @@ export default async function ProductsByGenderPage() {
   return (
     <section className="pt-14 pb-24">
       <div className="container">
-        <div className="flex flex-col justify-between items-center w-full bg-gray-50">
+        <div className="flex flex-col justify-between items-center w-full">
           <div className="w-full">
             <h1 className="text-3xl text-left mb-10 md:text-4xl font-bold  text-zinc-800">
               Male Style
